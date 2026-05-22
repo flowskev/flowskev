@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | itsKev_dev</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@400;700&family=Permanent+Marker&family=Gaegu:wght@400;700&display=swap');
+
+        :root {
+            --bg: #FDFBF7;
+            --ink: #1A1B26;
+            --accent: #3B82F6;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1.5px, transparent 0);
+            background-size: 24px 24px;
+            color: var(--ink);
+            margin: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .comic-font { font-family: 'Permanent Marker', cursive; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .sketch { font-family: 'Gaegu', cursive; }
+
+        .get-started-box {
+            background: #fff;
+            border: 4px solid var(--ink);
+            border-radius: 24px;
+            box-shadow: 10px 10px 0px var(--ink);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card {
+            background: white;
+            border: 3px solid var(--ink);
+            border-radius: 20px;
+            box-shadow: 10px 10px 0px var(--ink);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translate(-8px, -8px);
+            box-shadow: 18px 18px 0px var(--accent);
+        }
+
+        .hero-vid-frame {
+            width: 100%;
+            aspect-ratio: 16 / 6;
+            background: #000;
+            border: 4px solid var(--ink);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 12px 12px 0px var(--ink);
+        }
+
+        .btn-comic {
+            background: #FFDE59;
+            border: 3px solid var(--ink);
+            box-shadow: 4px 4px 0px var(--ink);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-comic:hover {
+            background: #ffea85;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--ink);
+        }
+
+        .btn-comic:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px var(--ink);
+        }
+
+        .reveal { opacity: 0; transform: translateY(40px); }
+        
+        /* Scanline effect for video */
+        .scanline {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="max-w-7xl mx-auto p-8 flex justify-between items-center">
+        <div class="comic-font text-4xl italic tracking-tighter uppercase cursor-default">itsKev_dev<span class="text-blue-600">!</span></div>
+        <div class="flex items-center gap-4">
+            <span class="sketch text-lg font-bold text-gray-400 rotate-[-5deg]">System_Active</span>
+            <div class="w-4 h-4 bg-green-500 rounded-full border-2 border-black animate-pulse"></div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 pb-24 space-y-20">
+        
+        <section class="reveal">
+            <div class="get-started-box p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 bg-blue-50">
+                <div class="flex-1 space-y-6">
+                    <div class="inline-block px-4 py-1 bg-blue-600 text-white mono text-[10px] rounded-full uppercase tracking-widest font-bold">
+                        Phase 01: Initialization
+                    </div>
+                    <h2 class="comic-font text-5xl md:text-6xl leading-none uppercase">Getting <span class="text-blue-600">Started.</span></h2>
+                    <p class="text-lg font-medium text-gray-600 leading-relaxed max-w-xl">
+                        Selamat datang di hub pengembangan <span class="text-blue-600 font-bold">itsKev_dev</span>. 
+                        Jelajahi berbagai modul sistem, automasi bot, dan integrasi API yang dirancang untuk performa tinggi.
+                    </p>
+                    <button class="btn-comic px-8 py-3 font-black uppercase text-xs tracking-widest rounded-xl" onclick="scrollToInventory()">
+                        Browse Inventory <i class="fa-solid fa-arrow-down ml-2 animate-bounce"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal hero-section">
+            <div class="relative">
+                <div class="absolute -top-6 -left-4 z-20 bg-white border-2 border-black px-4 py-1 rounded-lg rotate-[-2deg] comic-font text-sm shadow-[4px_4px_0px_black]">
+                    LIVE_PREVIEW.mp4
+                </div>
+                <div class="hero-vid-frame">
+                    <div class="scanline"></div>
+                    <div class="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
+                    <video id="heroVideo" class="w-full h-full object-cover grayscale-[20%] contrast-[1.1]" autoplay loop muted playsinline>
+                        <source src="https://github.com/linuxusertools-boop/session/raw/refs/heads/main/ssstik.io_@vanhklp_1778935592507.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <section id="inventory" class="space-y-12">
+            <div class="flex flex-col md:flex-row md:items-end justify-between border-b-4 border-black pb-6 reveal">
+                <div>
+                    <h2 class="text-5xl font-black uppercase tracking-tighter italic">Main <span class="text-blue-600">Inventory</span></h2>
+                    <p class="sketch text-xl text-gray-500 mt-2 italic font-bold">Katalog sistem utama yang siap deploy.</p>
+                </div>
+                <span class="mono text-[10px] opacity-40 mt-4 md:mt-0 font-bold uppercase tracking-[0.3em]">SECURE_STORAGE_V2</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="product-card flex flex-col reveal group">
+                    <div class="h-52 bg-[#E0E7FF] flex items-center justify-center border-b-4 border-black rounded-t-[16px] overflow-hidden">
+                        <i class="fa-solid fa-microchip text-7xl text-blue-600 transform transition-transform duration-500 group-hover:scale-125 group-hover:rotate-[10deg]"></i>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <h3 class="text-2xl font-black leading-none uppercase">Cortex Bot Architecture</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed font-medium">Arsitektur bot modular dengan efisiensi tinggi.</p>
+                        <button class="w-full py-4 btn-comic text-black font-black rounded-xl uppercase text-xs tracking-widest">Specs Detail</button>
+                    </div>
+                </div>
+
+                <div class="product-card flex flex-col reveal group">
+                    <div class="h-52 bg-[#FEF3C7] flex items-center justify-center border-b-4 border-black rounded-t-[16px] overflow-hidden">
+                        <i class="fa-solid fa-plug-circle-bolt text-7xl text-yellow-500 transform transition-transform duration-500 group-hover:scale-125 group-hover:rotate-[-10deg]"></i>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <h3 class="text-2xl font-black leading-none uppercase">API Proxy Wrapper</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed font-medium">Sistem perantara API untuk integrasi data yang bersih.</p>
+                        <button class="w-full py-4 btn-comic text-black font-black rounded-xl uppercase text-xs tracking-widest">Documentation</button>
+                    </div>
+                </div>
+
+                <div class="product-card flex flex-col reveal group">
+                    <div class="h-52 bg-[#F3E8FF] flex items-center justify-center border-b-4 border-black rounded-t-[16px] overflow-hidden">
+                        <i class="fa-solid fa-vault text-7xl text-purple-600 transform transition-transform duration-500 group-hover:scale-125 group-hover:rotate-[5deg]"></i>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <h3 class="text-2xl font-black leading-none uppercase">WA Session Capturer</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed font-medium">Capture session penautan WhatsApp secara aman.</p>
+                        <button class="w-full py-4 btn-comic text-black font-black rounded-xl uppercase text-xs tracking-widest">Launch Tool</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="bg-white border-4 border-black p-10 rounded-[32px] flex flex-col lg:flex-row justify-between items-center gap-10 shadow-[15px_15px_0px_#1A1B26] hover:shadow-[20px_20px_0px_#3B82F6] transition-all duration-300">
+                <div class="space-y-3 text-center lg:text-left">
+                    <h4 class="comic-font text-3xl">Ready for Collaboration?</h4>
+                    <p class="text-gray-500 text-lg sketch font-bold italic">Hubungi via kanal di bawah untuk kustomisasi sistem.</p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="https://wa.me/6285878003200" class="px-8 py-4 bg-[#25D366] text-white font-black rounded-2xl border-4 border-black shadow-[6px_6px_0px_black] active:shadow-none translate-y-[-6px] active:translate-y-0 transition-all uppercase text-xs italic"><i class="fa-brands fa-whatsapp mr-2"></i>WhatsApp</a>
+                    <a href="https://t.me/itskev_dev" class="px-8 py-4 bg-[#24A1DE] text-white font-black rounded-2xl border-4 border-black shadow-[6px_6px_0px_black] active:shadow-none translate-y-[-6px] active:translate-y-0 transition-all uppercase text-xs italic"><i class="fa-brands fa-telegram mr-2"></i>Telegram</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Scroll Function
+        function scrollToInventory() {
+            document.getElementById('inventory').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initial Animations
+        gsap.to(".reveal", { 
+            opacity: 1, 
+            y: 0, 
+            stagger: 0.15, 
+            duration: 1, 
+            ease: "power3.out", 
+            delay: 0.2 
+        });
+
+        // Hero Video Parallax
+        gsap.to("#heroVideo", {
+            y: 50,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".hero-section",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // Hover Effect on Navigation Logo
+        const logo = document.querySelector('.comic-font');
+        logo.addEventListener('mouseenter', () => {
+            gsap.to(logo, { scale: 1.05, rotate: -2, duration: 0.3 });
+        });
+        logo.addEventListener('mouseleave', () => {
+            gsap.to(logo, { scale: 1, rotate: 0, duration: 0.3 });
+        });
+    </script>
+</body>
+</html>
